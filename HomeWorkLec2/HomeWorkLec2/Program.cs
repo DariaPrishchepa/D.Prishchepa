@@ -77,21 +77,21 @@ namespace HomeWorkLec2
             }
             Console.WriteLine();
             Array.Sort(MassMin);
-            for (int i = 0; i < n; i++)
+            for (int i = n-1; i >= 0; i++)
                 Console.Write("{0} \t", MassMin[i]);
 
             ////////Episode III
             Console.WriteLine("введите выражение вида: 4 + 5");
             string op = Console.ReadLine();
             string[] operand = op.Split(' ');
-            int i = 0;
+            int k = 0;
             double t;
             foreach (string s in operand)
             {
 
                 if (s.Trim() != "")
-                    operand[i] = s;
-                    i++;
+                    operand[k] = s;
+                    k++;
             }
             
             switch (operand[1])
