@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Dynamic;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,13 +26,17 @@ namespace ConsoleApplication1
             List< int > mass = new List<int>();
             HashSet<int> dudHashSet = new HashSet<int>();
 
-            for (int i = 0; i < str.Length;)
+            
+            for (int i = 0; i < str.Length; i++)
             {
-                dictionary.Add(str[i], MyCount(str, str[i]));
-                str = str.Replace(Convert.ToString(str[i]), "");
+                if (dictionary.ContainsKey(str[i]))
+                {
+                    dictionary[str[i]]++;
+                }
+                else dictionary.Add(str[i], 1);
             }
 
-            
+
             foreach (KeyValuePair<char, int> kvp in dictionary)
             {
                 Console.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
