@@ -9,35 +9,39 @@ namespace ConsoleApplication1
 {
     class Program
     {
-        
+        static int MyCount(string S, char symbol)
+        {
+            String[] temp = S.Split(new char[] { symbol }, StringSplitOptions.None);
+            return temp.Length - 1;
+        }
+
         static void Main(string[] args)
         {
+///////Part1
             string str = Console.ReadLine();
-            int lenght = str.Length;
-            int tmp = 0;
             int s;
             Dictionary<char, int> dictionary = new Dictionary<char, int>();
-            Dictionary<int, int> mass = new Dictionary<int, int>();
+            List< int > mass = new List<int>();
             HashSet<int> dudHashSet = new HashSet<int>();
 
-
-            foreach (char c in str)
+            for (int i = 0; i < str.Length;)
             {
-                dictionary.Add(c, lenght);
+                dictionary.Add(str[i], MyCount(str, str[i]));
+                str = str.Replace(Convert.ToString(str[i]), "");
             }
+
             
             foreach (KeyValuePair<char, int> kvp in dictionary)
             {
                 Console.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
             }
-
+///////Part2
             while (true)
             {
                 s = Convert.ToInt32(Console.ReadLine());
                 if (s != -1)
                 {
-                    mass.Add(tmp, s);
-                    tmp++;
+                    mass.Add(s);
                  }
                 else break;
             }
