@@ -8,22 +8,24 @@ namespace Lec5
 {
     class Client
     {
-        readonly int _id;
-        private string _phone;
-        private int _sumOrder;
-
         public Client(int id, string phone, int sumOrder)
         {
-            _id = id;
-            _phone = phone;
-            _sumOrder = sumOrder;
+            Id = id;
+            Phone = phone;
+            SumOrder = sumOrder;
         }
 
         public int Id { get; }
 
         public string Phone { get; set;}
 
-        public int SumOrder { get; set; }
+        public double SumOrder { get; set;}
+
+        public virtual string Info()
+        {
+            return $"id: {Id}, SumOrder: {SumOrder}";
+        }
+
 
     }
 }

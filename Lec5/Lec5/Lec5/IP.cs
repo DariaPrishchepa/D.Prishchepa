@@ -8,16 +8,19 @@ namespace Lec5
 {
     class IP : Client
     {
-        private string _fio;
-        private string _data;
+
+        public IP(int id, string phone, int sumOrder,string fio, string data) : base(id, phone, sumOrder)
+        {
+            FIO = fio;
+            Data = data;
+        }
 
         public string FIO { get; set; }
         public string Data { get; set; }
 
-        public IP(int id, string phone, int sumOrder,string fio, string data) : base(id, phone, sumOrder)
+        public override string Info()
         {
-            _fio = fio;
-            _data = data;
+            return $"ИП: {FIO}, сумма заказа: {SumOrder:F2} рублей";
         }
     }
 }

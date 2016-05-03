@@ -8,16 +8,18 @@ namespace Lec5
 {
     class OOO : Client
     {
-        private string _nameOrg ;
-        private long _bankC;
-
-        public string NameOrg { get; set; }
-        public string BankC { get; set; }
-
         public OOO(int id, string phone, int sumOrder, string nameOrg, long bankC) : base(id, phone, sumOrder)
         {
-            _nameOrg = nameOrg;
-            _bankC = bankC;
+            NameOrg = nameOrg;
+            BankC = bankC;
+        }
+
+        public string NameOrg { get; set; }
+        public long BankC { get; set; }
+
+        public override string Info()
+        {
+            return $"Название организации: ООО {NameOrg}, сумма заказа: {SumOrder:F2} рублей";
         }
     }
 }
