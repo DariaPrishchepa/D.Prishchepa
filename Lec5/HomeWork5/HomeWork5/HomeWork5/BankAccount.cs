@@ -22,9 +22,15 @@ namespace HomeWork5
         private double _balance;
         readonly DateTime _dateOpen = DateTime.Today;
         readonly DateTime _dateEnd = DateTime.Today.AddYears(2);
-        private string _status = "Activ";
-        public string Status { get; } 
-        
+        //private string _status = "Activ";
+
+        internal enum StatusBankAccount { Activ, Archiv }
+        StatusBankAccount _status = StatusBankAccount.Activ;
+
+        public StatusBankAccount Status
+        {
+            get { return _status; }
+        }
 
         public DateTime DateOpen
         {
@@ -40,7 +46,6 @@ namespace HomeWork5
         public double FirstBalance
         {
             get { return _firstBalance; }
-            set { _firstBalance = value; }
         }
 
         public double Balance
@@ -67,7 +72,7 @@ namespace HomeWork5
         {
             if (sum > 0)
             {
-                if (Status != "Archiv") _balance = Balance + sum;
+                if (Status != StatusBankAccount.Archiv) _balance = Balance + sum;
                 else
                 {
                     Console.WriteLine($"Счет закрыт. С закрытым счетом нельзя проводить никакие операции.");
@@ -85,7 +90,7 @@ namespace HomeWork5
         {
             if (sum > 0)
             {
-                if (Status != "Archiv")
+                if (Status != StatusBankAccount.Archiv)
                 {
                     if ((Balance - sum) >= 0) _balance = Balance - sum;
                     else
@@ -110,7 +115,7 @@ namespace HomeWork5
             if (Balance > 0)
             {
                 WriteOff(Balance);
-                _status = "Archiv";
+                _status = StatusBankAccount.Archiv; 
             }
         }
     }

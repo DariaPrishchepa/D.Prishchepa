@@ -24,12 +24,12 @@ namespace HomeWork5
             //AA1.CloseBankAccount();
             //Console.WriteLine($"CloseBankAccount : {AA1.Status}");
             //AA1.WriteOff(200000);
-            Console.WriteLine($"CloseBankAccount : {AA1.DateCapitalization}");
-            AA1.Capitalization();
-            Console.WriteLine($"CloseBankAccount : {AA1.DateCapitalization}");
+            Console.WriteLine($"CloseBankAccount : {AA1.Status}");
+            //AA1.Capitalization();
+            //Console.WriteLine($"CloseBankAccount : {AA1.DateCapitalization}");
             
 
-            MetalAccount MA1 = new MetalAccount(id: 1, client: "Ivanov", firstBalance:1200*100, type: "Ag" , metalCosts: 1200, theNomberOfGrams: 100 );
+            //MetalAccount MA1 = new MetalAccount(id: 1, client: "Ivanov", firstBalance:1200*100, type: "Ag" , metalCosts: 1200, theNomberOfGrams: 100 );
         }
     }
 }
