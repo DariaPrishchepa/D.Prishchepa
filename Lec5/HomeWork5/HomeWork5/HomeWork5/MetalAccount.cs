@@ -11,7 +11,12 @@ namespace HomeWork5
         //обезличенный металлический счет - тип металла, количество грамм, стоимость за грамм (текущий курс), возможность пополнять и обналичивать счет по текущему курсу
         private double _metalCosts;
         public string Type { get; set; }
-        public double MetalCosts { get; }
+
+        public double MetalCosts
+        {
+            get { return _metalCosts; }
+        }
+
         public double TheNumberOfGrams { get; set; }
 
         public MetalAccount(int id, string client, double firstBalance, string type, double metalCosts, double theNomberOfGrams): base(id, client, firstBalance)
