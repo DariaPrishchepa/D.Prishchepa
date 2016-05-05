@@ -112,9 +112,11 @@ namespace HomeWork5
 
         public virtual void CloseBankAccount()
         {
-            if (Balance > 0)
+            if (Balance >= 0 )
             {
-                WriteOff(Balance);
+                if (Balance > 0)
+                    WriteOff(Balance);
+
                 _status = StatusBankAccount.Archiv; 
             }
         }
