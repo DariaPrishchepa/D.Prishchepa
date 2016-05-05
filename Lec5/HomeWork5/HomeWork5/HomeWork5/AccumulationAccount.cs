@@ -11,12 +11,12 @@ namespace HomeWork5
     {
         //накопительный - возможность пополнения и изъятия денег со счета, но не меньше первоначального взноса, наличие процентной ставки, капитализация процентов за месяц
 
-        private DateTime _dateCapitalization = DateOpen.AddMonths(1);
+        private DateTime _dateCapitalization = DateTime.Today.AddMonths(1);
 
         public DateTime DateCapitalization
         {
             get { return _dateCapitalization; }
-            set { _dateCapitalization = value; }
+            //set { _dateCapitalization = value; }
         }
         
         public double InterestRate {get;}
@@ -24,15 +24,6 @@ namespace HomeWork5
         public AccumulationAccount(int id, string client, double firstBalance, double interestRate ): base(id, client, firstBalance)
         {
             InterestRate = interestRate;
-        }
-
-        public override void Refill(double sum)
-        {
-            if (sum >= FirstBalance)
-            {
-                base.Refill(sum);
-            }
-            else Console.WriteLine($"недостаточная сумма для внесения на счет");
         }
 
         public override void WriteOff(double sum)
@@ -52,13 +43,16 @@ namespace HomeWork5
 
         public virtual void Capitalization()
         {
-            while (DateEnd.AddMonths(1).CompareTo(DateCapitalization) >= 0)
+            if (DateEnd.AddMonths(1).CompareTo(DateCapitalization) >= 0)
                 {
                     DateTime date = DateTime.Today;
-                    if (DateCapitalization.CompareTo(date) == 0)
+                    //DateTime date1 = new DateTime(2016, 6, 4);
+                    //Console.WriteLine($"{date1}");
+
+                if (DateCapitalization.CompareTo(date) == 0)
                     {
                         RefillInterestRate();
-                        DateCapitalization.AddMonths(1);
+                       _dateCapitalization = _dateCapitalization.AddMonths(1);
                     }
                 }
          }

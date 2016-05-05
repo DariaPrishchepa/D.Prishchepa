@@ -9,19 +9,18 @@ namespace HomeWork5
     class MetalAccount: BankAccount
     {
         //обезличенный металлический счет - тип металла, количество грамм, стоимость за грамм (текущий курс), возможность пополнять и обналичивать счет по текущему курсу
+        private double _metalCosts;
         public string Type { get; set; }
-        public double MetalCosts { get; set; }
+        public double MetalCosts { get; }
         public double TheNumberOfGrams { get; set; }
 
-        public MetalAccount(int id, string client, string type, double metalCosts, double theNomberOfGrams): base(id, client)
+        public MetalAccount(int id, string client, double firstBalance, string type, double metalCosts, double theNomberOfGrams): base(id, client, firstBalance)
         {
 
             Type = type;
-            MetalCosts = metalCosts;
+            _metalCosts = metalCosts;
             TheNumberOfGrams = theNomberOfGrams;
-            double firstBalance = TheNumberOfGrams*MetalCosts;
-            Balance = firstBalance;
-            FirstBalance = firstBalance;
+            
         }
 
         public override void Refill(double theNumberOfGrams)
