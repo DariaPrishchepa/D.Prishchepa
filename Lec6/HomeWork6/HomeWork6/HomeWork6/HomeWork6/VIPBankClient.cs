@@ -10,11 +10,11 @@ namespace HomeWork6
     {
         public VIPBankClient(int idAccount) : base(idAccount) { }
 
-        public override void AddAccount(BankAccount BA)
+        public override void AddAccount(BankAccount bankAccount)
         {
             if (CountBankAccount() < 10)
             {
-                base.AddAccount(BA);
+                base.AddAccount(bankAccount);
             }
             else Console.WriteLine($"невозможно добавить еще один банковский счет (максимально возможное количество счетов для VIP клиена = 10)");
         }

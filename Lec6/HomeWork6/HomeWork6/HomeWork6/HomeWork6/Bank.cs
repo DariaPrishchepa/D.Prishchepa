@@ -8,24 +8,18 @@ namespace HomeWork6
 {
     class Bank
     {
-        public bool TranslationBetweenAccounts(BankAccount from, BankAccount to, double summ)
+        public bool TranslationBetweenAccounts(BankAccount refillAccount, BankAccount writeOffBankAccount, double summ)
         {
-            if (to.WriteOff(summ))
+            if (writeOffBankAccount.WriteOff(summ))
             {
-                if (from.Refill(summ)) return true;
-                else
-                {
-                    to.Refill(summ);
-                    Console.WriteLine($"не получилось выполнить операцию перевода");
-                    return false;
-                }
-            }
-            else
-            {
+                if (refillAccount.Refill(summ)) return true;
+
+                writeOffBankAccount.Refill(summ);
                 Console.WriteLine($"не получилось выполнить операцию перевода");
                 return false;
             }
+            Console.WriteLine($"не получилось выполнить операцию перевода");
+            return false;
         }
-        public Bank() { }
     }
 }

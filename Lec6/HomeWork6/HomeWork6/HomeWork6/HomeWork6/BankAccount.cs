@@ -97,23 +97,14 @@ namespace HomeWork6
                         _balance = Balance - sum;
                         return true;
                     }
-                    else
-                    {
-                        Console.WriteLine($"При выводе со счета {sum} останется отрицательный баланс, операция невозможна");
-                        return false;
-                    }
-                }
-                else
-                {
-                    Console.WriteLine($"Счет закрыт. С закрытым счетом нельзя проводить никакие операции.");
+                    Console.WriteLine($"При выводе со счета {sum} останется отрицательный баланс, операция невозможна");
                     return false;
                 }
-            }
-            else
-            {
-                Console.WriteLine($"Некорректная сумма.");
+                Console.WriteLine($"Счет закрыт. С закрытым счетом нельзя проводить никакие операции.");
                 return false;
             }
+            Console.WriteLine($"Некорректная сумма.");
+            return false;
         }
 
         public virtual void CloseBankAccount()

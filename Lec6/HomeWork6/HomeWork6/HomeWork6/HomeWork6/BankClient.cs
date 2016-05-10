@@ -53,9 +53,9 @@ namespace HomeWork6
             }
         }
 
-        public virtual void AddAccount(BankAccount BA)
+        public virtual void AddAccount(BankAccount bankAccount)
         {
-            Accounts.Add(BA);
+            Accounts.Add(bankAccount);
         }
 
         public bool CloseAccount(int idAccount)
@@ -67,11 +67,8 @@ namespace HomeWork6
                     Accounts[i].CloseBankAccount();
                     return true;
                 }
-                else
-                {
-                    Console.WriteLine($"Счета с id = {idAccount} не существует");
-                    return false;
-                }
+                Console.WriteLine($"Счета с id = {idAccount} не существует");
+                return false;
             }
             return false;
         }
