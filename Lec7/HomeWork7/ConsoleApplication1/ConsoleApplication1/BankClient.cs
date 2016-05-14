@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
-namespace HomeWork6
+namespace HomeWork7
 {
     public abstract class BankClient : IComparable
     {
@@ -76,7 +75,7 @@ namespace HomeWork6
 
         public int CompareTo(object obj)
         {
-            BankClient client = (BankClient) obj;
+            BankClient client = (BankClient)obj;
             if (SumAllAccounts > client.SumAllAccounts)
                 return 1;
             if (SumAllAccounts < client.SumAllAccounts)

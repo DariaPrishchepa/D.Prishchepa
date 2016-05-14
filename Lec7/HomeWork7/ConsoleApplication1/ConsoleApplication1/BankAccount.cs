@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HomeWork6
+namespace HomeWork7
 {
     public class BankAccount
     {
