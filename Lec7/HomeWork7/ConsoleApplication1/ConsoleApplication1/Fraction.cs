@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,22 +9,32 @@ namespace HomeWork7
 {
     public struct SimpleFraction : IComparable
     {
-        private int _denominator;
+        //private int _denominator;
         public SimpleFraction(int numerator, int denominator) 
         {
-            Numerator = numerator;
-            if (denominator <= 0)
+            if (denominator < 0)
             {
-                throw new ArgumentOutOfRangeException($"значение знаменателя должно быть больше 0");
+                Denominator = denominator*(-1);
+                Numerator = numerator*(-1);
+                //throw new ArgumentOutOfRangeException($"значение знаменателя должно быть больше 0");
             }
-            _denominator = denominator;
+            if (denominator == 0)
+            {
+                Denominator = 1;
+                Numerator = 0;
+                //throw new ArgumentOutOfRangeException($"значение знаменателя должно быть больше 0"); 
+            }
+            ReductionNewFraction(ref numerator, ref denominator);
+            Numerator = numerator;
+            Denominator = denominator;
         }
         public int Numerator { get; private set; }
-        public int Denominator
-        {
-            get { return _denominator; }
-            private set { _denominator = value; }
-        }
+        public int Denominator { get; private set; }
+        //public int Denominator
+        //{
+        //    get { return _denominator; }
+        //    private set { _denominator = value; }
+        //}
 
         public static int gcd(int a, int b)
         {
@@ -31,10 +42,17 @@ namespace HomeWork7
                     b = a%(a = b);
                 return a;
         }
+        public static void ReductionNewFraction(ref int Numerator, ref int Denominator)
+        {
 
+            int tmpReduction = gcd(Math.Abs(Numerator), Math.Abs(Denominator));
+            Numerator /= tmpReduction;
+            Denominator /= tmpReduction;
+           // return new SimpleFraction(numerator,denominator);
+        }
         public static SimpleFraction ReductionFraction(SimpleFraction fraction)
         {
-            
+
             int tmpReduction = gcd(Math.Abs(fraction.Numerator), Math.Abs(fraction.Denominator));
             fraction.Numerator /= tmpReduction;
             fraction.Denominator /= tmpReduction;
