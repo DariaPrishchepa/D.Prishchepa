@@ -12,21 +12,28 @@ namespace HomeWork7
         //private int _denominator;
         public SimpleFraction(int numerator, int denominator) 
         {
-            if (denominator < 0)
+            try
             {
-                Denominator = denominator*(-1);
-                Numerator = numerator*(-1);
-                //throw new ArgumentOutOfRangeException($"значение знаменателя должно быть больше 0");
+                if (denominator < 0)
+                {
+                    Denominator = denominator * (-1);
+                    Numerator = numerator * (-1);
+                    //throw new ArgumentOutOfRangeException($"значение знаменателя должно быть больше 0");
+                }
+                ReductionNewFraction(ref numerator, ref denominator);
+                Numerator = numerator;
+                Denominator = denominator;
+                if (denominator == 0)
+                {
+                    throw new ArgumentOutOfRangeException("denominator", "Знаменатель должен быть больше нуля");
+                }
             }
-            if (denominator == 0)
+            catch(Exception ex)
             {
                 Denominator = 1;
                 Numerator = 0;
-                //throw new ArgumentOutOfRangeException($"значение знаменателя должно быть больше 0"); 
+                Console.WriteLine($"Не удолось создать дробь. {ex.Message}");
             }
-            ReductionNewFraction(ref numerator, ref denominator);
-            Numerator = numerator;
-            Denominator = denominator;
         }
         public int Numerator { get; private set; }
         public int Denominator { get; private set; }
@@ -44,7 +51,6 @@ namespace HomeWork7
         }
         public static void ReductionNewFraction(ref int Numerator, ref int Denominator)
         {
-
             int tmpReduction = gcd(Math.Abs(Numerator), Math.Abs(Denominator));
             Numerator /= tmpReduction;
             Denominator /= tmpReduction;

@@ -25,22 +25,17 @@ namespace HomeWork7
             InterestRate = interestRate;
         }
 
-        public override bool WriteOff(double sum)
+        public override void WriteOff(double sum)
         {
-            if (sum >= FirstBalance)
-            {
-                if (base.WriteOff(sum)) return true;
-                return false;
-            }
-            else Console.WriteLine($"недостаточная сумма для вывода со счета");
-            return false;
+            if (sum < FirstBalance)
+                throw new ArgumentOutOfRangeException("sum", "недостаточная сумма для вывода со счета");
+            base.WriteOff(sum);
         }
 
-        public bool RefillInterestRate()
+        public void RefillInterestRate()
         {
             double summInterestRate = Balance * InterestRate;
-            if (base.Refill(summInterestRate)) return true;
-            return false;
+            base.Refill(summInterestRate);
         }
 
         public virtual void Capitalization()

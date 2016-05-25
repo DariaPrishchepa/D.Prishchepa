@@ -28,13 +28,6 @@ namespace HomeWork7
 
         }
 
-        public override bool Refill(double sum)
-        {
-            //TheNumberOfGrams += theNumberOfGrams;
-            //double sum = theNumberOfGrams * MetalCosts;
-            if (base.Refill(sum)) return true;
-            return false;
-        }
 
     }
 }

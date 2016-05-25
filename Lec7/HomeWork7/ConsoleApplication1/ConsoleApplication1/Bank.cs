@@ -8,18 +8,34 @@ namespace HomeWork7
 {
     class Bank
     {
-        public bool TranslationBetweenAccounts(BankAccount refillAccount, BankAccount writeOffBankAccount, double summ)
+        public void TranslationBetweenAccounts(BankAccount refillAccount, BankAccount writeOffBankAccount, double summ)
         {
-            if (writeOffBankAccount.WriteOff(summ))
+            try
             {
-                if (refillAccount.Refill(summ)) return true;
-
-                writeOffBankAccount.Refill(summ);
-                Console.WriteLine($"не получилось выполнить операцию перевода");
-                return false;
+                writeOffBankAccount.WriteOff(summ);
             }
-            Console.WriteLine($"не получилось выполнить операцию перевода");
-            return false;
+            catch (ArgumentOutOfRangeException ex)
+            {
+                Console.WriteLine($"не получилось выполнить операцию перевода. {ex.Message}");
+            }
+            catch (InvalidOperationException ex)
+            {
+                Console.WriteLine($"не получилось выполнить операцию перевода. {ex.Message}");
+            }
+            try
+            {
+                refillAccount.Refill(summ);
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                writeOffBankAccount.Refill(summ);
+                Console.WriteLine($"не получилось выполнить операцию перевода. {ex.Message}");
+            }
+            catch (InvalidOperationException ex)
+            {
+                writeOffBankAccount.Refill(summ);
+                Console.WriteLine($"не получилось выполнить операцию перевода. {ex.Message}");
+            }
         }
     }
 }

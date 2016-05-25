@@ -52,10 +52,18 @@ namespace HomeWork7
 
         public BankAccount(int id, string client, double firstBalance)
         {
-            Id = id;
-            Client = client;
-            _balance = firstBalance;
-            _firstBalance = firstBalance;
+            try
+            {
+                Id = id;
+                Client = client;
+                _balance = firstBalance;
+                _firstBalance = firstBalance;
+            }
+            catch (Exception)
+            {
+                Console.WriteLine($"Не удалось создать банковский счет");
+            }
+            
         }
         public BankAccount(int id, string client)
         {
@@ -64,47 +72,20 @@ namespace HomeWork7
         }
 
 
-        public virtual bool Refill(double sum)
+        public virtual void Refill(double sum)
         {
-            if (sum > 0)
-            {
-                if (Status != StatusBankAccount.Archiv)
-                {
-                    _balance = Balance + sum;
-                    return true;
-                }
-                else
-                {
-                    Console.WriteLine($"Счет закрыт. С закрытым счетом нельзя проводить никакие операции.");
-                    return false;
-                }
-            }
-            else
-            {
-                Console.WriteLine($"Некорректная сумма.");
-                return false;
-            }
+            if (sum <= 0) throw new ArgumentOutOfRangeException("sum", "Сумма должна быть больше нуля");
+            if (Status == StatusBankAccount.Archiv) throw new InvalidOperationException($"Счет закрыт. С закрытым счетом нельзя проводить никакие операции.");
+            _balance = Balance + sum;
         }
 
-        public virtual bool WriteOff(double sum)
+        public virtual void WriteOff(double sum)
         {
-            if (sum > 0)
-            {
-                if (Status != StatusBankAccount.Archiv)
-                {
-                    if ((Balance - sum) >= 0)
-                    {
-                        _balance = Balance - sum;
-                        return true;
-                    }
-                    Console.WriteLine($"При выводе со счета {sum} останется отрицательный баланс, операция невозможна");
-                    return false;
-                }
-                Console.WriteLine($"Счет закрыт. С закрытым счетом нельзя проводить никакие операции.");
-                return false;
-            }
-            Console.WriteLine($"Некорректная сумма.");
-            return false;
+            if (sum <= 0) throw  new ArgumentOutOfRangeException("sum","Сумма должна быть больше нуля");
+            if (Status == StatusBankAccount.Archiv) throw new InvalidOperationException($"Счет закрыт. С закрытым счетом нельзя проводить никакие операции.");
+            if ((Balance - sum) < 0) throw new ArgumentOutOfRangeException("Balance", $"При выводе со счета {sum} останется отрицательный баланс, операция невозможна");
+
+            _balance = Balance - sum;
         }
 
         public virtual void CloseBankAccount()

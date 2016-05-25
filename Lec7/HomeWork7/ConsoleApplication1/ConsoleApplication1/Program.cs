@@ -19,14 +19,14 @@ namespace HomeWork7
         {
             
             Random rand = new Random();
-            //AccumulationAccount AA1 = new AccumulationAccount(id: 1, client: "Ivanov", firstBalance: 120000, interestRate: 0.12);
-            //AccumulationAccount AA2 = new AccumulationAccount(id: 2, client: "Ivanov", firstBalance: 120000, interestRate: 0.12);
-            //MetalAccount MA1 = new MetalAccount(id: 3, client: "Ivanov", firstBalance: 1200 * 100, type: "Ag", metalCosts: 1200, theNomberOfGrams: 100);
+            AccumulationAccount AA1 = new AccumulationAccount(id: 1, client: "Ivanov", firstBalance: 120000, interestRate: 0.12);
+            AccumulationAccount AA2 = new AccumulationAccount(id: 2, client: "Ivanov", firstBalance: 120000, interestRate: 0.12);
+            MetalAccount MA1 = new MetalAccount(id: 3, client: "Ivanov", firstBalance: 1200 * 100, type: "Ag", metalCosts: 1200, theNomberOfGrams: 100);
 
-            //BasicBankClient myBankClient = new BasicBankClient(1);
+            BasicBankClient myBankClient = new BasicBankClient(1);
 
-            //myBankClient.AddAccount(AA1);
-            //myBankClient.AddAccount(AA2);
+            myBankClient.AddAccount(AA1);
+            myBankClient.AddAccount(AA2);
 
             //Console.WriteLine($"CloseBankAccount : {myBankClient.SumAllAccounts}");
             //Console.WriteLine($"2 : {myBankClient.CountBankAccount()}");
@@ -62,7 +62,7 @@ namespace HomeWork7
             //Console.WriteLine($"2/0: {fr1.Numerator}/{fr1.Denominator}");
             //Console.WriteLine($"27/9:  {gcd(13, 17)}");
             //Console.WriteLine($"9/27:  {gcd(17, 13)}");
-            
+
             //SimpleFraction fr1 = new SimpleFraction(3, -5);
             //SimpleFraction fr2 = new SimpleFraction(-3, 7);
             //SimpleFraction fr3 = new SimpleFraction(1, 2);
@@ -79,9 +79,17 @@ namespace HomeWork7
             //List<SimpleFraction> fractions = new List<SimpleFraction>();
             //fractions.Add(fr1);
             //Console.WriteLine($"3/7:3/5:  {fr2 / fr3}");
-            SimpleFraction fr4 = new SimpleFraction(6, 8);
+            
+                SimpleFraction fr4 = new SimpleFraction(6, 0);
+            
+            
+            SimpleFraction fr1 = new SimpleFraction(3, -5);
+            SimpleFraction fr2 = new SimpleFraction(-3, 7);
+            SimpleFraction fr3 = new SimpleFraction(1, 2);
+            Console.WriteLine($"3/5+3/7:  {fr1 + fr2}");
+            Console.WriteLine($"3+7:  {3 + 7}");
             //SimpleFraction fr5 = new SimpleFraction(3, 8);
-            Console.WriteLine($"4/8:  {fr4 }");
+            //Console.WriteLine($"4/8:  {fr4 }");
             //SimpleFraction sum = new SimpleFraction(0, 1);
             //for (int i = 0; i < N; i++)
             //{
