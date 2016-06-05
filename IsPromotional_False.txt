@@ -1,0 +1,8 @@
+<Phone>[Телефон боса]-[IsPromotional: false]
+<Fax>[Главный факс]-[IsPromotional: false]
+<Web>[Бронирование столиков]-[IsPromotional: false]
+<Email>[Бронирование столиков]-[IsPromotional: false]
+<VKontakte>[IsPromotional: false]
+<Twitter>[IsPromotional: false]
+<Facebook>[IsPromotional: false]
+<Instagram>[IsPromotional: false]

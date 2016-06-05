@@ -1,0 +1,3 @@
+<Skype>[Бронирование столиков]-[IsPromotional: true]
+<ICQ>[Бронирование столиков]-[IsPromotional: true]
+<Jabber>[Бронирование столиков]-[IsPromotional: true]
