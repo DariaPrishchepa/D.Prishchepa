@@ -26,10 +26,14 @@ namespace Lec11
         {
             string resultString = string.Empty;
             if (a == null) throw new ArgumentNullException();
-            foreach (var tmp in a)
+            for (int i = 0; i < a.Length; i++)
             {
-                resultString += Convert.ToString(tmp) + str;
-                // Console.Write($"{tmp}{str}");
+                if (i == a.Length - 1)
+                {
+                    resultString += Convert.ToString(a[i]);
+                    break;
+                }
+                resultString += Convert.ToString(a[i]) + str;
             }
             return resultString;
         }
