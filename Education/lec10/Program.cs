@@ -36,50 +36,55 @@ namespace lec10
             /// </summary>
             /// <returns></returns> 
 
-            StreamReader xmlReader = new StreamReader(@"D:\Education\C_\flowCards.Card.xml");
 
-            string strXML = xmlReader.ReadToEnd();
-            xmlReader.Close();
-            XDocument doc = XDocument.Parse(strXML);
-            XElement contact = doc.Element("Card").Element("Contacts");
-            XElement[] contacts = contact.Elements().ToArray();
-            Console.WriteLine(contacts.Length);
-            using (StreamWriter xmlWriter1 = new StreamWriter(@"D:\Education\C_\IsPromotional_True.txt"))
-            using (StreamWriter xmlWriter2 = new StreamWriter(@"D:\Education\C_\IsPromotional_False.txt"))
+
+            using (StreamReader xmlReader = new StreamReader(@"D:\Education\C_\flowCards.Card.xml"))
             {
-                for (int i = 0; i < contacts.Length; i++)
+
+                string strXML = xmlReader.ReadToEnd();
+                xmlReader.Close();
+                XDocument doc = XDocument.Parse(strXML);
+                XElement contact = doc.Element("Card").Element("Contacts");
+                XElement[] contacts = contact.Elements().ToArray();
+                Console.WriteLine(contacts.Length);
+                using (StreamWriter xmlWriter1 = new StreamWriter(@"D:\Education\C_\IsPromotional_True.txt"))
+                using (StreamWriter xmlWriter2 = new StreamWriter(@"D:\Education\C_\IsPromotional_False.txt"))
                 {
-                    try
+                    for (int i = 0; i < contacts.Length; i++)
                     {
-                        if (contacts[i].Attribute("Description") == null)
+                        try
                         {
-                            if (bool.Parse(contacts[i].Attribute("IsPromotional").Value))
+                            if (contacts[i].Attribute("Description") == null)
                             {
-                                xmlWriter1.WriteLine(
-                                    $"<{contacts[i].Name}>[IsPromotional: {contacts[i].Attribute("IsPromotional").Value}]");
+                                if (bool.Parse(contacts[i].Attribute("IsPromotional").Value))
+                                {
+                                    xmlWriter1.WriteLine(
+                                        $"<{contacts[i].Name}>[IsPromotional: {contacts[i].Attribute("IsPromotional").Value}]");
+                                }
+                                else
+                                    xmlWriter2.WriteLine(
+                                        $"<{contacts[i].Name}>[IsPromotional: {contacts[i].Attribute("IsPromotional").Value}]");
+
                             }
                             else
-                                xmlWriter2.WriteLine(
-                                    $"<{contacts[i].Name}>[IsPromotional: {contacts[i].Attribute("IsPromotional").Value}]");
-
-                        }
-                        else
-                        {
-                            if (bool.Parse(contacts[i].Attribute("IsPromotional").Value))
                             {
-                                xmlWriter1.WriteLine(
-                                    $"<{contacts[i].Name}>[{contacts[i].Attribute("Description").Value}]-[IsPromotional: {contacts[i].Attribute("IsPromotional").Value}]");
+                                if (bool.Parse(contacts[i].Attribute("IsPromotional").Value))
+                                {
+                                    xmlWriter1.WriteLine(
+                                        $"<{contacts[i].Name}>[{contacts[i].Attribute("Description").Value}]-[IsPromotional: {contacts[i].Attribute("IsPromotional").Value}]");
+                                }
+                                else
+                                    xmlWriter2.WriteLine(
+                                        $"<{contacts[i].Name}>[{contacts[i].Attribute("Description").Value}]-[IsPromotional: {contacts[i].Attribute("IsPromotional").Value}]");
                             }
-                            else xmlWriter2.WriteLine(
-                                    $"<{contacts[i].Name}>[{contacts[i].Attribute("Description").Value}]-[IsPromotional: {contacts[i].Attribute("IsPromotional").Value}]");
                         }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"Ошибка: {ex}");
+                        }
+
+
                     }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine($"Ошибка: {ex}");
-                    }
-                    
- 
                 }
             }
         }

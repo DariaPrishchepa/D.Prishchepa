@@ -104,7 +104,7 @@ namespace Education
         public static SimpleFraction operator *(SimpleFraction leftFraction, SimpleFraction rightFraction)
         {
             CheckMaxMinForMultiplication(leftFraction.Numerator, rightFraction.Numerator);
-            CheckMaxMinForMultiplication(leftFraction.Denominator , rightFraction.Denominator;
+            CheckMaxMinForMultiplication(leftFraction.Denominator , rightFraction.Denominator);
             SimpleFraction ResultFraction = new SimpleFraction(leftFraction.Numerator * rightFraction.Numerator, leftFraction.Denominator * rightFraction.Denominator);
             return ReductionFraction(ResultFraction);
         }
